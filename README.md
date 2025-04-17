@@ -1,7 +1,6 @@
-# Filtered-Prompts2Video-Agent-
+# Filtered Prompt2Video Agent 
 
-
-This application leverages advanced AI models to generate videos from prompts, enhancing them for clarity and engagement. It integrates with Google Drive for video storage and provides a user-friendly interface using Streamlit.
+This application explore an agentic workflow by leverage LangGraph and PydanticAI,  to transform raw prompts into a refined version before putting into an AI Video Generator and exports everything to a CSV file. 
 
 ## Table of Contents
 - [Features](#features)
