@@ -1,5 +1,5 @@
 # Filtered-Prompts2Video-Agent-
-# AI Video Generator
+
 
 This application leverages advanced AI models to generate videos from prompts, enhancing them for clarity and engagement. It integrates with Google Drive for video storage and provides a user-friendly interface using Streamlit.
 
