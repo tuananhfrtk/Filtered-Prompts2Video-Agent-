@@ -1,4 +1,4 @@
-# streamlit_ui.py
+
 import streamlit as st
 import pandas as pd
 import asyncio
@@ -64,27 +64,6 @@ class StreamlitUI:
         if selected:
             st.session_state["selected_prompts"] = selected
 
-
-        # def display_prompt_selection(self) -> List[str]:
-    #     """Display prompt selection interface."""
-    #     st.title("AI Video Generator Pipeline")
-        
-    #     # Load harmful prompts from database
-    #     harmful_prompts = self.analyzer.get_harmful_prompts_from_db()
-        
-    #     if harmful_prompts.empty:
-    #         st.warning("No harmful prompts found in the database. Please run the prompt analyzer first.")
-    #         return []
-            
-    #     # Display prompt selection
-    #     selected_prompts = st.multiselect(
-    #         "Select prompts to process",
-    #         harmful_prompts["prompt"].tolist(),
-    #         default=harmful_prompts["prompt"].head(3).tolist()
-    #     )
-        
-    #     return selected_prompts
-
     
     def display_enhancement_options(self, prompts: List[str]) -> List[str]:
         """Display enhancement options interface."""
@@ -110,62 +89,7 @@ class StreamlitUI:
             return self._manual_enhancement_ui(prompts)
             
         return prompts        
-
-        # enhancement_mode = st.radio(
-        #     "Choose enhancement mode",
-        #     ["Auto-Enhance", "Manual Edit"],
-        #     horizontal=True
-        # )
-
-        # if enhancement_mode == "Auto-Enhance":
-        #     if st.button("Enhance Selected Prompts"):
-        #         with st.spinner("Enhancing prompts..."):
-        #             enhanced_prompts = asyncio.run(self._enhance_prompts(prompts))
-        #             st.session_state["enhanced_prompts"] = enhanced_prompts
-        # else:
-        #     enhanced_prompts = self._manual_enhancement_ui(prompts)
-        #     st.session_state["enhanced_prompts"] = enhanced_prompts # session_state 1
-
-    # def display_enhancement_options(self, prompts: List[str]) -> List[str]:
-    #     """Display enhancement options interface."""
-    #     st.subheader("Enhancement Options")
         
-    #     enhancement_mode = st.radio(
-    #         "Choose enhancement mode",
-    #         ["Auto-Enhance", "Manual Edit"],
-    #         horizontal=True
-    #     )
-        
-    #     if enhancement_mode == "Auto-Enhance":
-    #         if st.button("Enhance Selected Prompts"):
-    #             with st.spinner("Enhancing prompts..."):
-    #                 enhanced_prompts = asyncio.run(self._enhance_prompts(prompts))
-    #                 return enhanced_prompts
-    #     else:
-    #         return self._manual_enhancement_ui(prompts)
-            
-    #     return prompts
-        
-
-    
-
-    
-    # async def _enhance_prompts(self, prompts: List[str]) -> List[str]:
-    #     """Enhance prompts using the workflow manager."""
-    #     enhanced = []
-    #     for prompt in prompts:
-    #         state = {
-    #             "original_prompt": prompt,
-    #             "refined_prompt": None,
-    #             "script": None,
-    #             "video_url": None,
-    #             "user_feedback": None,
-    #             "needs_edit": False,
-    #             "error": None
-    #         }
-    #         result = await self.workflow_manager._enhance_prompt(state)
-    #         enhanced.append(result["refined_prompt"])
-    #     return enhanced
     async def _enhance_prompts(self, prompts: List[str]) -> None:
         """Enhance prompts using the workflow manager and store/display results."""
         enhanced = []
@@ -194,21 +118,7 @@ class StreamlitUI:
 
         # return enhanced
 
-    
-    # def _manual_enhancement_ui(self, prompts: List[str]) -> List[str]:
-    #     """Display manual enhancement interface."""
-    #     enhanced = []
-    #     for i, prompt in enumerate(prompts):
-    #         with st.expander(f"Prompt {i+1}"):
-    #             st.write("Original:", prompt)
-    #             edited = st.text_area(
-    #                 "Edit prompt",
-    #                 prompt,
-    #                 key=f"edit_{i}",
-    #                 height=150
-    #             )
-    #             enhanced.append(edited)
-    #     return enhanced
+
     def _manual_enhancement_ui(self, prompts: List[str]) -> None:
         """Display manual enhancement interface and store/display results."""
         enhanced = []
@@ -341,51 +251,6 @@ class StreamlitUI:
                 results = self.display_video_generation(enhanced)                  
 
                 
-                
-    
-
-    # def run(self):
-    #     """Run the Streamlit UI."""
-    #     self.setup_sidebar()
-
-    #     # Step 1: Prompt Selection
-    #     selected_prompts = self.display_prompt_selection()
-
-    #     # Save selection in session state
-    #     if selected_prompts:
-    #         st.session_state["selected_prompts"] = selected_prompts
-
-    #     # Retrieve selection from session state
-    #     prompts = st.session_state.get("selected_prompts", [])
-
-    #     if prompts:
-    #         # Step 2: Enhancement
-    #         enhanced_prompts = self.display_enhancement_options(prompts)
-
-    #         #Save enhancement in session state
-    #         if enhanced_prompts:
-    #         st.session_state["enhanced_prompts"] = enhanced_prompts
-
-    #         if enhanced_prompts:
-
-                
-    #             # Step 3: Video Generation
-    #             self.display_video_generation(enhanced_prompts)
-    #---------------------------------------------------------------------------
-    # def run(self):
-    #     """Run the Streamlit UI."""
-    #     self.setup_sidebar()
-        
-    #     # Step 1: Prompt Selection
-    #     selected_prompts = self.display_prompt_selection()
-        
-    #     if selected_prompts:
-    #         # Step 2: Enhancement
-    #         enhanced_prompts = self.display_enhancement_options(selected_prompts)
-            
-    #         if enhanced_prompts:
-    #             # Step 3: Video Generation
-    #             self.display_video_generation(enhanced_prompts)
 
 def main():
     """Main entry point for the Streamlit UI."""
